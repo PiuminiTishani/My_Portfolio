@@ -31,7 +31,6 @@ const Nav = () => {
                 <BiDownload className='w-5 h-5 mr-3' /> Download CV
               </button>
               {/* Burger Menu */}
-              <h1>Piumini</h1>
               <HiBars3BottomRight className='w-8 h-8 cursor-pointer text-white lg:hidden'/> 
             </div>
         </div>
