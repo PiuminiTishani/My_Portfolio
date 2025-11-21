@@ -1,226 +1,121 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { projects, Project } from "@/constant/constant"; // Adjust path if needed
+import ProjectModal from "./ProjectModal"; // Adjust path if needed
 
-const projects = [
-  {
-    title: "Portfolio Website",
-    shortDesc: "A personal portfolio to showcase projects and skills.",
-    details:
-      "Built with Next.js and TailwindCSS. Features a dynamic projects section, responsive layout, and smooth animations.",
-    repoLink: "#",
-    liveDemoLink: "#",
-    image: "/projects/portfolio.png",
-  },
-  {
-    title: "E-commerce Platform",
-    shortDesc: "An online store with payment integration and admin dashboard.",
-    details:
-      "Includes product catalog, shopping cart, checkout with Stripe API, and admin panel for managing products and orders.",
-    repoLink: "#",
-    liveDemoLink: "#",
-    image: "/projects/ecommerce.png",
-  },
-  {
-    title: "Weather App",
-    shortDesc: "Real-time weather updates with API integration.",
-    details:
-      "Fetches live weather data from OpenWeatherMap API. Features include location search, temperature units toggle, and responsive UI.",
-    repoLink: "#",
-    liveDemoLink: "#",
-    image: "/projects/weather.png",
-  },
-  {
-    title: "Task Management Tool",
-    shortDesc: "Manage and track tasks efficiently in a collaborative environment.",
-    details:
-      "Supports creating, updating, and deleting tasks. Includes user authentication, team collaboration, and drag-and-drop task board.",
-    repoLink: "#",
-    liveDemoLink: "#",
-    image: "/projects/tasks.png",
-  },
-];
+const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-export default function ProjectsPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"], // start scrolling when top hits bottom
-  });
+  // Separate projects for the layout
+  const featuredProject = projects.find((p) => p.isFeatured);
+  const otherProjects = projects.filter((p) => !p.isFeatured);
+  const topRowProject = otherProjects[0]; // First project for the top-right slot
+  const bottomRowProject = otherProjects[1]; // Second project for the bottom-right slot
+  const remainingProjects = otherProjects.slice(2); // The rest of the projects
 
-  // Map scroll progress to card translateY
-  const cardOffset = useTransform(scrollYProgress, [0, 1], [0, -300]); // adjust -300 for overlap
+  const openModal = (project: Project) => setSelectedProject(project);
+  const closeModal = () => setSelectedProject(null);
 
   return (
-    <section className="relative py-20 bg-[#0d0d1f] flex flex-col items-center min-h-screen">
-      <h2 className="text-4xl font-bold mb-16 text-center text-[#80e0ff]">Projects</h2>
+    <>
+      <section id="projects" className="py-20 px-4 md:px-8">
+        <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">
+          My Projects
+        </h2>
 
-      <div
-        ref={containerRef}
-        className="w-full max-w-6xl relative flex flex-col items-center"
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.title}
-            style={{ y: cardOffset }}
-            className={`absolute top-0 bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl shadow-lg w-[90%] md:w-[700px] p-6`}
-          >
-            {/* Glow background */}
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#80e0ff40] via-[#00fff580] to-[#80e0ff40] opacity-30 blur-xl pointer-events-none"></div>
-
-            {/* Image */}
-            <div className="w-full h-56 relative rounded-xl overflow-hidden mb-4">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-
-            <h3 className="text-2xl font-bold text-[#80e0ff] mb-2 relative z-10">
-              {project.title}
-            </h3>
-            <p className="text-white relative z-10">{project.shortDesc}</p>
-
-            <div className="mt-4 flex gap-4 relative z-10">
-              <a
-                href={project.repoLink}
-                target="_blank"
-                className="px-4 py-2 bg-[#80e0ff20] text-[#80e0ff] rounded-lg hover:bg-[#80e0ff40] transition"
-              >
-                Repository
-              </a>
-              <a
-                href={project.liveDemoLink}
-                target="_blank"
-                className="px-4 py-2 bg-[#80e0ff20] text-[#80e0ff] rounded-lg hover:bg-[#80e0ff40] transition"
-              >
-                Live Demo
-              </a>
-            </div>
-          </motion.div>
-        ))}
+        {/* Top Grid Section (Fills the viewport on desktop) */}
+       <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_1fr] gap-6 md:h-[90vh]">
+  {/* BIG FEATURED PROJECT */}
+  {featuredProject && (
+    <div
+      onClick={() => openModal(featuredProject)}
+      className="relative bg-[#1110515e] rounded-xl border overflow-hidden cursor-pointer group text-white md:row-span-2 h-[60vh] md:h-full"
+    >
+      <Image
+        src={featuredProject.image}
+        alt={featuredProject.title}
+        fill
+        className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+      />
+      <div className="absolute bottom-0 left-0 p-6 bg-linear-to-t from-black/80 to-transparent w-full">
+        <h3 className="text-3xl font-bold">{featuredProject.title}</h3>
+        <p className="text-gray-300 mt-1">{featuredProject.description}</p>
       </div>
+      <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="flex gap-4">
+          <span className="text-xl font-bold">View Details</span>
+        </div>
+      </div>
+    </div>
+  )}
 
-      {/* Spacer so container can scroll */}
-      <div className="h-[150vh]" />
-    </section>
+  {/* TOP-RIGHT PROJECT CARD */}
+  {topRowProject && (
+    <SmallProjectCard project={topRowProject} openModal={openModal} />
+  )}
+
+  {/* BOTTOM-RIGHT PROJECT CARD */}
+  {bottomRowProject && (
+    <SmallProjectCard project={bottomRowProject} openModal={openModal} />
+  )}
+</div>
+
+{/* Second Grid for Remaining Projects */}
+{remainingProjects.length > 0 && (
+  <div className="mt-12 grid grid-cols-1 md:grid-cols-2 md:h-[45vh] gap-6">
+    {remainingProjects.map((project) => (
+      <SmallProjectCard key={project.title} project={project} openModal={openModal} />
+    ))}
+  </div>
+)}
+      </section>
+
+      {/* Modal */}
+      {selectedProject && (
+        <ProjectModal project={selectedProject} onClose={closeModal} />
+      )}
+    </>
   );
+};
+
+
+// Reusable Small Project Card Component
+interface SmallCardProps {
+  project: Project;
+  openModal: (project: Project) => void;
 }
 
-// "use client";
+const SmallProjectCard = ({ project, openModal }: SmallCardProps) => {
+  return (
+    <div
+      onClick={() => openModal(project)}
+      className="relative bg-[#1110515e] rounded-xl border overflow-hidden cursor-pointer group text-white h-[50vh] md:h-[45vh]"
+    >
+      {/* Background Image */}
+      <Image
+        src={project.image}
+        alt={project.title}
+        fill
+        className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+      />
 
-// import { useRef } from "react";
-// import Image from "next/image";
-// import { motion, useScroll, useTransform } from "framer-motion";
+      {/* Permanent text at bottom (same as featured card) */}
+      <div className="absolute bottom-0 left-0 p-4 bg-linear-to-t from-black/80 to-transparent w-full">
+        <h3 className="text-xl font-bold">{project.title}</h3>
+        <p className="text-gray-300 mt-1">{project.description}</p>
+      </div>
 
-// const projects = [
-//   {
-//     title: "Portfolio Website",
-//     shortDesc: "A personal portfolio to showcase projects and skills.",
-//     repoLink: "#",
-//     liveDemoLink: "#",
-//     image: "/projects/portfolio.png",
-//   },
-//   {
-//     title: "E-commerce Platform",
-//     shortDesc: "An online store with payment integration and admin dashboard.",
-//     repoLink: "#",
-//     liveDemoLink: "#",
-//     image: "/projects/ecommerce.png",
-//   },
-//   {
-//     title: "Weather App",
-//     shortDesc: "Real-time weather updates with API integration.",
-//     repoLink: "#",
-//     liveDemoLink: "#",
-//     image: "/projects/weather.png",
-//   },
-//   {
-//     title: "Task Management Tool",
-//     shortDesc: "Manage and track tasks efficiently in a collaborative environment.",
-//     repoLink: "#",
-//     liveDemoLink: "#",
-//     image: "/projects/tasks.png",
-//   },
-// ];
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="flex gap-4">
+          <span className="text-lg font-bold">View Details</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-// export default function ProjectsPage() {
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   const { scrollYProgress } = useScroll({
-//     target: containerRef,
-//     offset: ["start start", "end end"],
-//   });
 
-//   const maxStackOffset = 60; // how much each card will stack above the first
-
-//   return (
-//     <section className="relative py-20 bg-[#0d0d1f] flex flex-col items-center min-h-screen">
-//       <h2 className="text-4xl font-bold mb-16 text-center text-[#80e0ff] z-10 relative">
-//         Projects
-//       </h2>
-
-//       <div
-//         ref={containerRef}
-//         className="relative w-full max-w-6xl flex flex-col items-center"
-//         style={{ height: `${projects.length * 300}px` }} // extra height for stacking scroll
-//       >
-//         {projects.map((project, index) => {
-//           // first card is pinned; others stack progressively
-//           const start = 0;
-//           const end = 1;
-//           const y = useTransform(
-//             scrollYProgress,
-//             [start, end],
-//             [index * 0, -index * maxStackOffset]
-//           );
-
-//           return (
-//             <motion.div
-//               key={project.title}
-//               style={{ y, zIndex: projects.length - index }}
-//               className={`absolute top-0 left-1/2 -translate-x-1/2 bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl shadow-lg w-[90%] md:w-[700px] p-6`}
-//             >
-//               {/* Image */}
-//               <div className="w-full h-56 relative rounded-xl overflow-hidden mb-4">
-//                 <Image
-//                   src={project.image}
-//                   alt={project.title}
-//                   fill
-//                   className="object-cover"
-//                 />
-//               </div>
-
-//               <h3 className="text-2xl font-bold text-[#80e0ff] mb-2">{project.title}</h3>
-//               <p className="text-white mb-4">{project.shortDesc}</p>
-
-//               <div className="flex gap-4">
-//                 <a
-//                   href={project.repoLink}
-//                   target="_blank"
-//                   className="px-4 py-2 bg-[#80e0ff20] text-[#80e0ff] rounded-lg hover:bg-[#80e0ff40] transition"
-//                 >
-//                   Repository
-//                 </a>
-//                 <a
-//                   href={project.liveDemoLink}
-//                   target="_blank"
-//                   className="px-4 py-2 bg-[#80e0ff20] text-[#80e0ff] rounded-lg hover:bg-[#80e0ff40] transition"
-//                 >
-//                   Live Demo
-//                 </a>
-//               </div>
-//             </motion.div>
-//           );
-//         })}
-//       </div>
-
-//       {/* Spacer to allow scrolling past stacked cards */}
-//       <div className="h-[150vh]" />
-//     </section>
-//   );
-// }
+export default Projects;
