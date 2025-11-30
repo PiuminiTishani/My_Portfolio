@@ -26,12 +26,12 @@ const Projects = () => {
         </h2>
 
         {/* Top Grid Section (Fills the viewport on desktop) */}
-       <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_1fr] gap-6 md:h-[90vh]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
   {/* BIG FEATURED PROJECT */}
   {featuredProject && (
     <div
       onClick={() => openModal(featuredProject)}
-      className="relative bg-[#1110515e] rounded-xl border overflow-hidden cursor-pointer group text-white md:row-span-2 h-[60vh] md:h-full"
+      className="relative bg-[#1110515e] rounded-xl border overflow-hidden cursor-pointer group text-white md:row-span-2 min-h-[60vh]"
     >
       <Image
         src={featuredProject.image}
@@ -64,7 +64,7 @@ const Projects = () => {
 
 {/* Second Grid for Remaining Projects */}
 {remainingProjects.length > 0 && (
-  <div className="mt-12 grid grid-cols-1 md:grid-cols-2 md:h-[45vh] gap-6">
+  <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
     {remainingProjects.map((project) => (
       <SmallProjectCard key={project.title} project={project} openModal={openModal} />
     ))}
@@ -91,7 +91,7 @@ const SmallProjectCard = ({ project, openModal }: SmallCardProps) => {
   return (
     <div
       onClick={() => openModal(project)}
-      className="relative bg-[#1110515e] rounded-xl border overflow-hidden cursor-pointer group text-white h-[50vh] md:h-[45vh]"
+      className="relative bg-[#1110515e] rounded-xl border overflow-hidden cursor-pointer group text-white h-auto min-h-[40vh] md:min-h-[45vh]"
     >
       {/* Background Image */}
       <Image

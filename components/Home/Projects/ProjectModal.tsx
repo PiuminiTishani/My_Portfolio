@@ -84,8 +84,20 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </a>
             )}
 
+            {/* GitHub Link */}
+            {project.githubLink && project.githubLink !== '#' && (
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#235ea0] hover:bg-[#2e1190b8] text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                GitHub
+              </a>
+            )}
+
             {/* Frontend Code */}
-            {project.frontendLink && (
+            {project.frontendLink && project.frontendLink !== '' && project.frontendLink !== '#' && (
               <a
                 href={project.frontendLink}
                 target="_blank"
@@ -97,7 +109,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             )}
 
             {/* Backend Code */}
-            {project.backendLink && (
+            {project.backendLink && project.backendLink !== '' && project.backendLink !== '#' && (
               <a
                 href={project.backendLink}
                 target="_blank"

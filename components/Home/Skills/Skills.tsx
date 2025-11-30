@@ -20,7 +20,6 @@ const backendSkills = [
   { name: "MongoDB", logo: "/logos/mongodb.png" },
 ];
 
-
 const languages = [
   { name: "C", logo: "/logos/nodejs.png" },
   { name: "Java", logo: "/logos/java.png" },
@@ -40,17 +39,17 @@ export default function SkillsSection() {
   const renderSkillCard = (skill: typeof frontendSkills[0]) => (
   <div
     key={skill.name}
-    className="flex items-center bg-[#1616638d] border-2 opacity-90 p-3 rounded-3xl text-left shadow-lg hover:scale-105 transition-transform w-full">
+    className="flex items-center justify-start bg-[#16166367] border-2 opacity-90 px-3 py-2 rounded-xl text-left shadow-sm hover:scale-105 transition-transform w-full max-w-[170px] mx-auto min-w-s min-h-10">
     {/* Logo */}
-    <div className="w-12 h-12 relative shrink-0">
-      <Image src={skill.logo} alt={skill.name} fill className="object-contain" />
+    <div className="w-8 h-8 sm:w-10 sm:h-10 relative shrink-0">
+      <Image src={skill.logo} alt={skill.name} fill className="object-contain p-1" />
     </div>
 
     {/* Skill Name */}
-    <span className="ml-4 text-white font-semibold">{skill.name}</span>
+    <span className="ml-2 text-white font-semibold text-[10px] sm:text-xs md:text-sm lg:text-sm whitespace-normal">{skill.name}</span>
   </div>
 );
-  const renderBigCard = (title: string, skills: typeof frontendSkills) => {
+  const BigCard = ({ title, skills }: { title: string; skills: typeof frontendSkills }) => {
     const cardRef = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -79,10 +78,10 @@ export default function SkillsSection() {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="big-card bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl p-6 flex flex-col items-center shadow-[0_0_8px_#80e0ff] w-full h-[400px]"
+        className="big-card bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl p-4 flex flex-col items-center shadow-[0_0_8px_#80e0ff] w-full h-full min-h-64"
       >
-        <h3 className="text-2xl font-bold mb-6 text-[#80e0ff]">{title}</h3>
-        <div className="grid grid-cols-2 gap-8">{skills.map(renderSkillCard)}</div>
+        <h3 className="text-xl font-bold mb-4 text-[#80e0ff]">{title}</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-0 w-full">{skills.map(renderSkillCard)}</div>
       </div>
     );
   };
@@ -94,11 +93,11 @@ export default function SkillsSection() {
         <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">My Skills</h2>
 
         {/* Cards container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-12">
-  {renderBigCard("Frontend Technologies", frontendSkills)}
-  {renderBigCard("Backend Technologies", backendSkills)}
-  {renderBigCard("Languages", languages)}
-  {renderBigCard("Other Tools", tools)}
+        <div className="grid grid-cols-1 md:grid-cols-2 md:auto-rows-fr items-stretch justify-items-stretch gap-12">
+  <BigCard title="Frontend Technologies" skills={frontendSkills} />
+  <BigCard title="Backend Technologies" skills={backendSkills} />
+  <BigCard title="Languages" skills={languages} />
+  <BigCard title="Tools" skills={tools} />
 </div>
       </div>
     </section>
