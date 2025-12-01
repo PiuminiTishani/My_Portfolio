@@ -121,13 +121,13 @@ export default function Education() {
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
-              className="relative mb-20"
+              className="relative mb-12"
             >
               {/* Left Card (odd index) */}
               {index % 2 === 0 ? (
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between">
                   {/* Card on Left */}
-                  <div className="w-[45%]">
+                  <div className="w-[46%]">
                     <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
                       <div className="flex items-start gap-4 mb-4">
                         <div className="w-16 h-16 relative shrink-0 bg-white rounded-full p-2">
@@ -161,26 +161,26 @@ export default function Education() {
                   </div>
 
                   {/* Center Circle */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#0a0a1f] border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 top-8 w-12 h-12 bg-[#0a0a1f] border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
                     <div className="w-4 h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
                   </div>
 
                   {/* Empty Space on Right */}
-                  <div className="w-[45%]"></div>
+                  <div className="w-[46%]"></div>
                 </div>
               ) : (
                 /* Right Card (even index) */
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between">
                   {/* Empty Space on Left */}
-                  <div className="w-[45%]"></div>
+                  <div className="w-[46%]"></div>
 
                   {/* Center Circle */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#0a0a1f] border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 top-8 w-12 h-12 bg-[#0a0a1f] border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
                     <div className="w-4 h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
                   </div>
 
                   {/* Card on Right */}
-                  <div className="w-[45%]">
+                  <div className="w-[46%]">
                     <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
                       <div className="flex items-start gap-4 mb-4">
                         <div className="w-16 h-16 relative shrink-0 bg-white rounded-full p-2">

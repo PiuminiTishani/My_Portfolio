@@ -100,6 +100,17 @@ export default function SkillsSection() {
   <BigCard title="Tools" skills={tools} />
 </div>
       </div>
+
+      {/* Marquee section - Full width */}
+      <div className="mt-16 overflow-hidden w-full">
+        <div className="flex gap-8 animate-marquee">
+            {[...frontendSkills, ...backendSkills, ...languages, ...tools, ...frontendSkills, ...backendSkills].map((skill, index) => (
+              <div key={index} className="shrink-0 w-16 h-16 relative hover: transition-all duration-400">
+                <Image src={skill.logo} alt={skill.name} fill className="object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
     </section>
   );
 }
