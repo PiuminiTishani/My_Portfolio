@@ -105,7 +105,7 @@ export default function Education() {
       <div className="max-w-6xl mx-auto px-4">
         {/* Section Title */}
         <h2 className="text-4xl font-bold mb-6 text-center text-[#80e0ff]">
-          My Education
+          Education
         </h2>
         <br />
 

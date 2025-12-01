@@ -90,7 +90,7 @@ export default function SkillsSection() {
     <section className="py-20 bg-[#0d0d1f] text-white">
       <div className="max-w-6xl mx-auto px-4">
         {/* Section title */}
-        <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">My Skills</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">Skills</h2>
 
         {/* Cards container */}
         <div className="grid grid-cols-1 md:grid-cols-2 md:auto-rows-fr items-stretch justify-items-stretch gap-12">

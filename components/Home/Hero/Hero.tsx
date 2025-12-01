@@ -1,17 +1,37 @@
 'use client';
 import Image from 'next/image'
-import React, { use } from 'react'
+import React from 'react'
 import { BsArrowRight } from 'react-icons/bs';
+import { FaFigma, FaCode, FaDatabase } from 'react-icons/fa';
 import Typewriter from 'typewriter-effect'
 import ParticlesHero from './ParticleBackground';
 
 const Hero = () => {
+  const services = [
+    
+    {
+      icon: <FaCode className="w-12 h-12" />,
+      title: "Frontend Development",
+      description: "Building responsive and interactive web applications using modern technologies like React, Next.js, and TypeScript."
+    },
+    {
+      icon: <FaDatabase className="w-12 h-12" />,
+      title: "Backend Development",
+      description: "Developing robust server-side solutions with Node.js, Express, and databases to power your applications."
+    },
+    {
+      icon: <FaFigma className="w-12 h-12" />,
+      title: "UI / UX Design",
+      description: "Creating intuitive and visually appealing user interfaces that enhance user experience and engagement across all platforms."
+    },
+  ];
+
   return (
-    <div className='relative h-screen flex items-center justify-center text-white overflow-hidden flex-col'>
+    <div className='relative h-auto min-h-screen flex items-start justify-center text-white overflow-hidden flex-col pb-32 pt-32'>
 
 <ParticlesHero/>
 
-        <div className='relative z-10 flex flex-col items-center'>
+        <div className='relative z-10 flex flex-col items-center w-full px-4'>
             <Image src="/images/s1.png" alt="heroimage" width={150} height={150} className='rounded-full border-8 border-[#0c0c48aa]'></Image>
             <h1 className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl mt-6 text-center font-bold tracking-wide'>
                 Hi, I am <span className='text-cyan-600'>Piumini Tishani</span>
@@ -34,10 +54,30 @@ const Hero = () => {
                     }} />
                 </span> 
             </h2>
-            <button className='mt-6 px-10 py-4 bg-blue-700 hover:bg-blue-900 transition-all duration-300 cursor-pointer rounded-full text-lg font-medium'>
-                <span>See my work</span>
-                <BsArrowRight className='w-5 h-5 ml-2 inline-block' />
-            </button>
+           
+        </div>
+
+        {/* Services Cards Section */}
+        <div className="relative z-10 mt-20 w-full max-w-6xl px-4 mx-auto">
+         
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="bg-[#0f0f2f]/40 backdrop-blur-md border border-[#80e0ff30] rounded-3xl p-8 hover:scale-105 hover:bg-[#0f0f2f]/60 hover:border-[#80e0ff50] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(128,224,255,0.3)]"
+              >
+                <div className="flex justify-center mb-6 text-[#80e0ff]">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-4 text-white">
+                  {service.title}
+                </h3>
+                <p className="text-center text-gray-300 text-sm leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
         
                 {/* Decorative separator: SVG wave that fades to transparent so sections blend */}

@@ -23,7 +23,7 @@ const Projects = () => {
     <>
       <section id="projects" className="py-20 px-4 md:px-8">
         <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">
-          My Projects
+          Projects
         </h2>
 
         {/* Main Grid Section */}
