@@ -85,8 +85,8 @@ export default function Education() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: ref,
-              start: "top 85%",
-              end: "bottom 30%",
+              start: "top 90%",
+              end: "bottom 20%",
               toggleActions: "play reverse play reverse",
               scrub: 1,
             },
