@@ -87,7 +87,6 @@ export default function SkillsSection() {
         className="big-card bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 flex flex-col items-center shadow-[0_0_8px_#80e0ff] w-full sm:w-[48%] mb-5 h-auto sm:min-h-[400px]"
       >
         <h3 className="text-lg sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-6 text-[#80dfffc7] tracking-wide text-center">{title}</h3>
-        
         <div className="grid grid-cols-2 gap-1.5 sm:gap-3 w-full flex-1 content-start">
           {skills.map(renderSkillCard)}
         </div>
@@ -111,11 +110,11 @@ export default function SkillsSection() {
         <BigCard title="Tools" skills={tools} />
       </div>
 
-      {/* Marquee section */}
-      <div className="mt-10 overflow-hidden w-full">
+      {/* Marquee section - Full width outside container */}
+      <div className="mt-16 overflow-hidden w-screen relative left-1/2 right-1/2 -mx-[50vw]">
         <div className="flex gap-8 animate-marquee">
             {[...frontendSkills, ...backendSkills, ...languages, ...tools, ...frontendSkills, ...backendSkills].map((skill, index) => (
-              <div key={index} className="shrink-0 w-12 h-16 relative hover:scale-110 transition-all duration-400">
+              <div key={index} className="shrink-0 w-12 h-16 relative hover:scale-110 transition-all duration-350">
                 <Image src={skill.logo} alt={skill.name} fill className="object-contain" />
               </div>
             ))}
