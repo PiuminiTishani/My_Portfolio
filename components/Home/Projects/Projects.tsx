@@ -53,7 +53,7 @@ const Projects = () => {
           )}
 
           {/* Right side grid - 2x2 layout */}
-          {gridProjects.slice(0, 4).map((project, index) => (
+          {gridProjects.slice(0, 4).map((project) => (
             <SmallProjectCard 
               key={project.title} 
               project={project} 

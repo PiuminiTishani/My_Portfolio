@@ -88,7 +88,7 @@ export default function Experience() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Title */}
         <h2 className="text-4xl font-bold text-center text-[#80e0ff]">
-          Achievements
+          Experience
         </h2>
 
         {/* Cards Stack Container */}

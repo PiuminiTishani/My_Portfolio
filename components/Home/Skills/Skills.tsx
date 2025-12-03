@@ -21,7 +21,7 @@ const backendSkills = [
   { name: "MongoDB", logo: "/logos/mongodb.png" },
 ];
 const languages = [
-  { name: "C", logo: "/logos/nodejs.png" },
+  { name: "C", logo: "/logos/C.png" },
   { name: "Java", logo: "/logos/java.png" },
   { name: "JavaScript", logo: "/logos/javascript.png" },
   { name: "Python", logo: "/logos/python.png" },
@@ -86,7 +86,7 @@ export default function SkillsSection() {
         onMouseLeave={handleMouseLeave}
         className="big-card bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 flex flex-col items-center shadow-[0_0_8px_#80e0ff] w-full sm:w-[48%] mb-5 h-auto sm:min-h-[400px]"
       >
-        <h3 className="text-lg sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-6 text-[#80dfffc7] tracking-wide text-center">{title}</h3>
+        <h3 className="text-lg sm:text-2xl md:text-3xl font-bold mb-5 sm:mb-8 text-[#80dfffc7] tracking-wide text-center">{title}</h3>
         <div className="grid grid-cols-2 gap-1.5 sm:gap-3 w-full flex-1 content-start">
           {skills.map(renderSkillCard)}
         </div>

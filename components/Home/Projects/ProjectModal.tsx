@@ -27,7 +27,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 text-3xl hover:text-white z-10 transition-colors"
+          className="absolute top-20 right-4 text-gray-400 text-3xl hover:text-white z-10 transition-colors"
           aria-label="Close modal"
         >
           &times;

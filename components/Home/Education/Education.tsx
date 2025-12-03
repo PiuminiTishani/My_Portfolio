@@ -111,8 +111,10 @@ export default function Education() {
 
         {/* Timeline Container */}
         <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-linear-to-b from-[#80e0ff] via-[#80e0ff50] to-transparent h-full"></div>
+          {/* Vertical Line - Hidden on mobile, centered on desktop */}
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-linear-to-b from-[#80e0ff] via-[#80e0ff50] to-transparent h-full"></div>
+          {/* Mobile vertical line on the left */}
+          <div className="md:hidden absolute left-6 w-1 bg-linear-to-b from-[#80e0ff] via-[#80e0ff50] to-transparent h-full"></div>
 
           {/* Education Items */}
           {educationData.map((edu, index) => (
@@ -123,14 +125,14 @@ export default function Education() {
               }}
               className="relative mb-12"
             >
-              {/* Left Card (odd index) */}
+              {/* Desktop: Left Card (odd index), Mobile: All cards on right */}
               {index % 2 === 0 ? (
                 <div className="flex items-start justify-between">
-                  {/* Card on Left */}
-                  <div className="w-[46%]">
-                    <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="w-16 h-16 relative shrink-0 bg-white rounded-full p-2">
+                  {/* Card on Left (desktop) / Right (mobile) */}
+                  <div className="w-full md:w-[46%] pl-16 md:pl-0">
+                    <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
+                      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 relative shrink-0 bg-white rounded-full p-1.5 sm:p-2">
                           <Image
                             src={edu.logo}
                             alt={edu.institution}
@@ -138,52 +140,52 @@ export default function Education() {
                             className="object-contain"
                           />
                         </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-1">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base sm:text-xl font-bold text-white mb-1">
                             {edu.degree}
                           </h3>
-                          <p className="text-gray-400 text-sm">{edu.institution}</p>
+                          <p className="text-gray-400 text-xs sm:text-sm">{edu.institution}</p>
                           {edu.duration && <p className="text-gray-500 text-xs mt-1">{edu.duration}</p>}
                         </div>
                       </div>
                       {edu.grade && (
-                        <div className="mb-3">
-                          <span className="text-sm text-gray-400">Grade: </span>
-                          <span className="text-[#80e0ff] font-semibold">{edu.grade}</span>
+                        <div className="mb-2 sm:mb-3">
+                          <span className="text-xs sm:text-sm text-gray-400">Grade: </span>
+                          <span className="text-[#80e0ff] font-semibold text-xs sm:text-base">{edu.grade}</span>
                         </div>
                       )}
                       {edu.description && (
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
                           {edu.description}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  {/* Center Circle */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 top-8 w-12 h-12 bg-[#0a0a1f] border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
-                    <div className="w-4 h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
+                  {/* Center Circle - adjusted for mobile */}
+                  <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 top-6 sm:top-8 w-8 h-8 sm:w-12 sm:h-12 bg-[#0a0a1f] border-2 sm:border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
+                    <div className="w-2 h-2 sm:w-4 sm:h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
                   </div>
 
-                  {/* Empty Space on Right */}
-                  <div className="w-[46%]"></div>
+                  {/* Empty Space on Right (desktop only) */}
+                  <div className="hidden md:block w-[46%]"></div>
                 </div>
               ) : (
-                /* Right Card (even index) */
+                /* Right Card (even index on desktop), Mobile: All cards on right */
                 <div className="flex items-start justify-between">
-                  {/* Empty Space on Left */}
-                  <div className="w-[46%]"></div>
+                  {/* Empty Space on Left (desktop only) */}
+                  <div className="hidden md:block w-[46%]"></div>
 
-                  {/* Center Circle */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 top-8 w-12 h-12 bg-[#0a0a1f] border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
-                    <div className="w-4 h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
+                  {/* Center Circle - adjusted for mobile */}
+                  <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 top-6 sm:top-8 w-8 h-8 sm:w-12 sm:h-12 bg-[#0a0a1f] border-2 sm:border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
+                    <div className="w-2 h-2 sm:w-4 sm:h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
                   </div>
 
                   {/* Card on Right */}
-                  <div className="w-[46%]">
-                    <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="w-16 h-16 relative shrink-0 bg-white rounded-full p-2">
+                  <div className="w-full md:w-[46%] pl-16 md:pl-0">
+                    <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
+                      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 relative shrink-0 bg-white rounded-full p-1.5 sm:p-2">
                           <Image
                             src={edu.logo}
                             alt={edu.institution}
@@ -191,22 +193,22 @@ export default function Education() {
                             className="object-contain"
                           />
                         </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-1">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base sm:text-xl font-bold text-white mb-1">
                             {edu.degree}
                           </h3>
-                          <p className="text-gray-400 text-sm">{edu.institution}</p>
+                          <p className="text-gray-400 text-xs sm:text-sm">{edu.institution}</p>
                           {edu.duration && <p className="text-gray-500 text-xs mt-1">{edu.duration}</p>}
                         </div>
                       </div>
                       {edu.grade && (
-                        <div className="mb-3">
-                          <span className="text-sm text-gray-400">Grade: </span>
-                          <span className="text-[#80e0ff] font-semibold">{edu.grade}</span>
+                        <div className="mb-2 sm:mb-3">
+                          <span className="text-xs sm:text-sm text-gray-400">Grade: </span>
+                          <span className="text-[#80e0ff] font-semibold text-xs sm:text-base">{edu.grade}</span>
                         </div>
                       )}
                       {edu.description && (
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
                           {edu.description}
                         </p>
                       )}
