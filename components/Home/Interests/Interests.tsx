@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// --- Types ---
+// --- Type Definition ---
 interface Interest {
   id: number;
   title: string;
@@ -76,97 +76,129 @@ const interestsData: Interest[] = [
       "/badminton/7.jpg",
     ]
   },
-
-  
 ];
 
 // --- Sub-Component: Infinite Scrolling Column ---
-const InfiniteColumn = ({ images, duration, className }: { images: string[], duration: number, className?: string }) => {
-  const columnContent = [...images, ...images, ...images, ...images];
-
-  const getHeightClass = (index: number) => {
-    const heights = ["h-64", "h-96", "h-80", "h-72", "h-[400px]"];
-    return heights[index % heights.length];
-  };
-
+const InfiniteColumn = ({ images, duration, className }: { images: string[]; duration: number; className: string }) => {
   return (
-    <div className={`relative w-full h-full overflow-hidden ${className}`}>
-      <motion.div
-        animate={{ y: "-50%" }}
-        initial={{ y: "0%" }}
-        transition={{
-          duration: duration,
-          ease: "linear",
-          repeat: Infinity,
-        }}
-        className="flex flex-col gap-8"
-      >
-        {columnContent.map((img, i) => (
-          <div 
-            key={i} 
-            className={`relative w-full ${getHeightClass(i)} rounded-lg overflow-hidden shrink-0`}
-          >
-            <Image 
-              src={img} 
-              alt="gallery" 
-              fill 
-              className="object-cover transition-opacity duration-500" 
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
+    <motion.div
+      className={`flex flex-col gap-3 md:gap-6 ${className}`}
+      animate={{ y: ["0%", "-50%"] }}
+      transition={{
+        duration,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+    >
+      {[...images, ...images].map((src, idx) => (
+        <div key={idx} className="relative w-full aspect-[4/3]">
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 50vw, 25vw"
+            className="rounded-lg object-cover"
+          />
+        </div>
+      ))}
+    </motion.div>
   );
 };
 
 // --- Sub-Component: Floating Gallery Modal ---
 const FloatingGallery = ({ interest, onClose }: { interest: Interest; onClose: () => void }) => {
-  
+  const [columns, setColumns] = useState(4); // Default to 4 columns
+
+  // 1. Handle Resize to switch between 2 columns (mobile) and 4 columns (desktop)
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = 'unset'; }
+    const handleResize = () => {
+      setColumns(window.innerWidth < 768 ? 2 : 4);
+    };
+
+    // Set initial value
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    // Lock body scroll
+    document.body.style.overflow = "hidden";
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.body.style.overflow = "unset";
+    };
   }, []);
 
-  const col1 = interest.gallery.filter((_, i) => i % 4 === 0);
-  const col2 = interest.gallery.filter((_, i) => i % 4 === 1);
-  const col3 = interest.gallery.filter((_, i) => i % 4 === 2);
-  const col4 = interest.gallery.filter((_, i) => i % 4 === 3);
+  // 2. Dynamically distribute images into the correct number of columns
+  // If columns = 2, images go [0, 2, 4...] and [1, 3, 5...]
+  // If columns = 4, images go [0, 4, 8...], [1, 5, 9...], etc.
+  const distributedImages = Array.from({ length: columns }, (_: unknown, colIndex) =>
+    interest.gallery.filter((_: unknown, i: number) => i % columns === colIndex)
+  );
+
+  // Helper to determine vertical offset (parallax look) for each column
+  const getPaddingClass = (index: number) => {
+    if (columns === 2) {
+      // Mobile offsets
+      return index === 0 ? "pt-0" : "pt-24";
+    } else {
+      // Desktop offsets
+      const paddings = ["pt-0", "pt-24", "pt-12", "pt-40"];
+      return paddings[index] || "pt-0";
+    }
+  };
+
+  // Helper to determine speed for each column
+  const getDuration = (index: number) => {
+    if (columns === 2) {
+      return index === 0 ? 45 : 35;
+    }
+    const durations = [45, 35, 50, 40];
+    return durations[index] || 40;
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      // CHANGED: Added z-[999] to ensure it sits on top of everything, including navbars
-      className="fixed inset-0 z-999 bg-[#0d0d1f] flex flex-col overflow-hidden"
+      className="fixed inset-0 z-[999] bg-[#0d0d1f] flex flex-col overflow-hidden"
     >
       {/* Header */}
-      {/* CHANGED: Increased top padding (pt-28 mobile, md:pt-32 desktop) to push content below navbar */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-28 px-6 pb-8 md:pt-32 md:px-12 bg-linear-to-b from-black/90 to-transparent pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-24 px-6 pb-8 md:pt-28 md:px-12 bg-gradient-to-b from-[#0d0d1f] to-transparent pointer-events-none">
         <div className="pointer-events-auto">
-          <h2 className="text-4xl font-black text-white uppercase tracking-tighter">{interest.title}</h2>
-          <p className="text-[#80e0ff] tracking-widest text-sm">{interest.country}</p>
+          <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
+            {interest.title}
+          </h2>
+          <p className="text-[#80e0ff] tracking-widest text-xs md:text-sm">
+            {interest.country}
+          </p>
         </div>
-        <button 
-          onClick={onClose} 
-          className="pointer-events-auto p-4 bg-white/10 hover:bg-white/20 rounded-full transition-colors backdrop-blur-sm group"
+        <button
+          onClick={onClose}
+          className="pointer-events-auto p-3 md:p-4 bg-white/10 hover:bg-white/20 active:bg-white/20 rounded-full transition-colors backdrop-blur-sm group"
         >
-          <X className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          <X className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-110 group-active:scale-110 transition-transform" />
         </button>
       </div>
 
       {/* Gallery Container */}
       <div className="relative w-full h-full overflow-hidden bg-[#0d0d1f]">
-        
         {/* Mask */}
-        <div className="absolute inset-0 pointer-events-none z-10 bg-linear-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f] h-full" />
+        <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f] h-full" />
 
         {/* The Grid */}
-        <div className="w-full h-[120vh] -mt-[10vh] px-4 md:px-8 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 transform rotate-0">
-          <InfiniteColumn images={col1} duration={45} className="pt-0" />
-          <InfiniteColumn images={col2} duration={35} className="pt-24" />
-          <InfiniteColumn images={col3} duration={50} className="pt-12" />
-          <InfiniteColumn images={col4} duration={40} className="pt-40" />
+        <div
+          className={`w-full h-[120vh] -mt-[10vh] px-4 md:px-8 lg:px-12 grid gap-3 md:gap-6 transform rotate-0
+          ${columns === 2 ? "grid-cols-2" : "grid-cols-4"}`}
+        >
+          {distributedImages.map((images, index) => (
+            <InfiniteColumn
+              key={index}
+              images={images}
+              duration={getDuration(index)}
+              className={getPaddingClass(index)}
+            />
+          ))}
         </div>
       </div>
     </motion.div>
@@ -213,7 +245,7 @@ export default function InterestsGallery() {
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-linear-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
@@ -230,7 +262,7 @@ export default function InterestsGallery() {
 
             return (
               <motion.div
-                key={item.id}
+                key={`${item.id}-${offset}`}
                 layout
                 initial={false}
                 animate={{
@@ -247,7 +279,7 @@ export default function InterestsGallery() {
                 onClick={() => handleCardClick(offset)}
               >
                 <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 340px" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
                 <AnimatePresence mode="wait">
                   {isActive && (
                     <motion.div
@@ -274,17 +306,17 @@ export default function InterestsGallery() {
 
         {/* Navigation Controls */}
         <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4 md:px-12 pointer-events-none z-20">
-            <button onClick={handlePrev} className="pointer-events-auto group p-3 rounded-full bg-black/20 hover:bg-[#80e0ff]/20 border border-white/10 hover:border-[#80e0ff]/50 backdrop-blur-md transition-all duration-300 hover:scale-110">
-              <ChevronLeft className="w-8 h-8 text-white group-hover:text-[#80e0ff]" />
+            <button onClick={handlePrev} className="pointer-events-auto group p-3 rounded-full bg-black/20 hover:bg-[#80e0ff]/20 active:bg-[#80e0ff]/20 border border-white/10 hover:border-[#80e0ff]/50 active:border-[#80e0ff]/50 backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-110">
+              <ChevronLeft className="w-8 h-8 text-white group-hover:text-[#80e0ff] group-active:text-[#80e0ff]" />
             </button>
-            <button onClick={handleNext} className="pointer-events-auto group p-3 rounded-full bg-black/20 hover:bg-[#80e0ff]/20 border border-white/10 hover:border-[#80e0ff]/50 backdrop-blur-md transition-all duration-300 hover:scale-110">
-              <ChevronRight className="w-8 h-8 text-white group-hover:text-[#80e0ff]" />
+            <button onClick={handleNext} className="pointer-events-auto group p-3 rounded-full bg-black/20 hover:bg-[#80e0ff]/20 active:bg-[#80e0ff]/20 border border-white/10 hover:border-[#80e0ff]/50 active:border-[#80e0ff]/50 backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-110">
+              <ChevronRight className="w-8 h-8 text-white group-hover:text-[#80e0ff] group-active:text-[#80e0ff]" />
             </button>
         </div>
 
         <div className="flex justify-center gap-3 mt-8 relative z-20">
           {interestsData.map((_, i) => (
-            <button key={i} onClick={() => setActiveIndex(i)} className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-[#80e0ff] shadow-[0_0_10px_#80e0ff]" : "w-2 bg-white/20 hover:bg-white/40"}`} />
+            <button key={i} onClick={() => setActiveIndex(i)} className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-[#80e0ff] shadow-[0_0_10px_#80e0ff]" : "w-2 bg-white/20 hover:bg-white/40 active:bg-white/40"}`} />
           ))}
         </div>
       </div>

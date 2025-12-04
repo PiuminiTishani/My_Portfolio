@@ -82,50 +82,60 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative py-20 bg-[#0d0d1f] text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+        <h2 className="text-4xl font-bold text-center text-[#80e0ff] mb-8 md:mb-12 drop-shadow-lg">
+          Contact Me
+        </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* --- Left Column: Contact Info --- */}
-          <div className="space-y-8">
+          <div className="space-y-12">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                Schedule a call with <br /> me to see if I can help
+              <h2 className="text-2xl md:text-2xl font-bold leading-tight mb-4">
+                Get in Touch
               </h2>
-              <p className="text-gray-400 text-lg">
-                Reach out to me today and let&apos;s discuss how I can help you achieve your goals.
-              </p>
+              
             </div>
 
             <div className="space-y-6">
-              {/* Phone */}
-              <div className="flex items-center space-x-4">
-                <FontAwesomeIcon icon={faPhone} className="w-6 h-6 text-[#80e0ff]" />
-                <span className="text-xl font-medium">+893473289</span>
-              </div>
+              {/* Phone / WhatsApp */}
+              <a 
+                href="https://wa.me/94717465113"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-4 hover:text-[#80e0ff] active:text-[#80e0ff] transition-colors duration-300 group"
+              >
+                <div className="w-12 h-12 rounded-full flex items-center justify-center group-hover:bg-[#80e0ff] group-active:bg-[#80e0ff] transition-all duration-300">
+                  <FontAwesomeIcon icon={faPhone} className="w-5 h-5 text-[#80e0ff] group-hover:text-[#0d0d1f] group-active:text-[#0d0d1f] transition-all" />
+                </div>
+                <span className="text-xl font-medium">+94 71 746 5113</span>
+              </a>
               {/* Email */}
-              <div className="flex items-center space-x-4">
-                <FontAwesomeIcon icon={faEnvelope} className="w-6 h-6 text-[#80e0ff]" />
-                <span className="text-xl font-medium">hello@example.com</span>
-              </div>
+              <a
+                href="mailto:piuminitishani@gmail.com"
+                className="flex items-center space-x-4 hover:text-[#80e0ff] active:text-[#80e0ff] transition-colors duration-300 group"
+              >
+                <div className="w-12 h-12 rounded-full flex items-center justify-center group-hover:bg-[#80e0ff] group-active:bg-[#80e0ff] transition-all duration-300">
+                  <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5 text-[#80e0ff] group-hover:text-[#0d0d1f] group-active:text-[#0d0d1f] transition-all" />
+                </div>
+                <span className="text-xl font-medium">piuminitishani@gmail.com</span>
+              </a>
               {/* Location */}
-              <div className="flex items-center space-x-4">
-                <FontAwesomeIcon icon={faLocationDot} className="w-6 h-6 text-[#80e0ff]" />
-                <span className="text-xl font-medium">Dhaka, Bangladesh</span>
-              </div>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Moratuwa,+Sri+Lanka"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-4 hover:text-[#80e0ff] active:text-[#80e0ff] transition-colors duration-300 group"
+              >
+                <div className="w-12 h-12 rounded-full flex items-center justify-center group-hover:bg-[#80e0ff] group-active:bg-[#80e0ff] transition-all duration-300">
+                  <FontAwesomeIcon icon={faLocationDot} className="w-5 h-5 text-[#80e0ff] group-hover:text-[#0d0d1f] group-active:text-[#0d0d1f] transition-all" />
+                </div>
+                <span className="text-xl font-medium">Moratuwa, Sri Lanka</span>
+              </a>
             </div>
 
             {/* Social Icons */}
-            <div className="flex gap-4 pt-4">
-              {[faFacebook, faYoutube, faTwitter, faInstagram].map((icon, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="w-12 h-12 rounded-full bg-[#16162c] flex items-center justify-center hover:bg-[#80e0ff] hover:text-[#0d0d1f] transition-all duration-300 group border border-white/5"
-                >
-                  <FontAwesomeIcon icon={icon} className="w-5 h-5 text-white group-hover:text-[#0d0d1f]" />
-                </a>
-              ))}
-            </div>
+            
           </div>
 
           {/* --- Right Column: Form --- */}
