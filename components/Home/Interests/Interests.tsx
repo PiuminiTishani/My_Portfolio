@@ -19,57 +19,65 @@ interface Interest {
 const interestsData: Interest[] = [
   {
     id: 1,
-    title: "MACHU PICCHU",
-    country: "PERU",
-    description: "Adventure is never far away",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=800&q=80",
+    title: "DANCING",
+    country: "",
+    description: "The hidden language of the soul",
+    image: "/dancing/2.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80",
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&q=80",
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80",
-      "https://images.unsplash.com/photo-1533052431637-2384a30559ce?w=800&q=80",
-      "https://images.unsplash.com/photo-1509216242873-7786f446f465?w=800&q=80",
-      "https://images.unsplash.com/photo-1518182170546-0766be6f5a56?w=800&q=80",
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&q=80",
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80",
-      "https://images.unsplash.com/photo-1533052431637-2384a30559ce?w=800&q=80",
-      "https://images.unsplash.com/photo-1509216242873-7786f446f465?w=800&q=80",
-      "https://images.unsplash.com/photo-1518182170546-0766be6f5a56?w=800&q=80",
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&q=80",
+      "/dancing/1.jpg",
+      "/dancing/2.jpg",
+      "/dancing/3.jpg",
+      "/dancing/4.jpg",
+      "/dancing/5.jpg",
+      "/dancing/6.jpg",
+      "/dancing/7.jpg",
+      "/dancing/8.jpg",
+      "/dancing/9.jpg",
+      "/dancing/10.jpg",
+      "/dancing/10 (2).jpg",
+      "/dancing/11.jpg",
+      "/dancing/12.jpg",
+      "/dancing/13.jpg",
+      "/dancing/14.jpg",
+      "/dancing/15.jpg",
+      "/dancing/16.jpg",
+      "/dancing/16 (2).jpg",
+      "/dancing/17.jpg",
+      "/dancing/18.jpg",
+      "/dancing/19.jpg",
+      "/dancing/20.jpg",
+      "/dancing/21.jpg",
+      "/dancing/22.jpg",
+      "/dancing/23.jpg",
+      "/dancing/24.jpg",
+      "/dancing/25.jpg",
+      "/dancing/26.jpg",
+      "/dancing/27.jpg",
+      "/dancing/28.jpg",
+      "/dancing/29.jpg",
+      "/dancing/30.jpg",
+      "/dancing/31.jpg",
+      "/dancing/32.jpg",
+      "/dancing/33.jpg",
     ]
   },
   {
     id: 2,
-    title: "CHAMONIX",
-    country: "FRANCE",
-    description: "Let your dreams come true",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
-    gallery: Array(12).fill("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80"),
+    title: "BADMINTON",
+    country: "",
+    description: "The art of agility",
+    image: "/badminton/1.jpg",
+    gallery: [
+      "/badminton/2.jpg",
+      "/badminton/3.jpg",
+      "/badminton/4.jpg",
+      "/badminton/5.jpg",
+      "/badminton/6.jpg",
+      "/badminton/7.jpg",
+    ]
   },
-  {
-    id: 3,
-    title: "HIGHLANDS",
-    country: "SCOTLAND",
-    description: "The mountains are calling",
-    image: "https://images.unsplash.com/photo-1506368083636-6defb67639a7?auto=format&fit=crop&w=800&q=80",
-    gallery: Array(12).fill("https://images.unsplash.com/photo-1506368083636-6defb67639a7?w=800&q=80"),
-  },
-  {
-    id: 4,
-    title: "KYOTO",
-    country: "JAPAN",
-    description: "Discover ancient traditions",
-    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
-    gallery: Array(12).fill("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80"),
-  },
-  {
-    id: 5,
-    title: "DOLOMITES",
-    country: "ITALY",
-    description: "Wander through the peaks",
-    image: "https://images.unsplash.com/photo-1541344999736-2d57297e556e?auto=format&fit=crop&w=800&q=80",
-    gallery: Array(12).fill("https://images.unsplash.com/photo-1541344999736-2d57297e556e?w=800&q=80"),
-  },
+
+  
 ];
 
 // --- Sub-Component: Infinite Scrolling Column ---
@@ -102,7 +110,7 @@ const InfiniteColumn = ({ images, duration, className }: { images: string[], dur
               src={img} 
               alt="gallery" 
               fill 
-              className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" 
+              className="object-cover transition-opacity duration-500" 
             />
           </div>
         ))}
@@ -130,11 +138,11 @@ const FloatingGallery = ({ interest, onClose }: { interest: Interest; onClose: (
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       // CHANGED: Added z-[999] to ensure it sits on top of everything, including navbars
-      className="fixed inset-0 z-[999] bg-[#0d0d1f] flex flex-col overflow-hidden"
+      className="fixed inset-0 z-999 bg-[#0d0d1f] flex flex-col overflow-hidden"
     >
       {/* Header */}
       {/* CHANGED: Increased top padding (pt-28 mobile, md:pt-32 desktop) to push content below navbar */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-28 px-6 pb-8 md:pt-32 md:px-12 bg-gradient-to-b from-black/90 to-transparent pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-28 px-6 pb-8 md:pt-32 md:px-12 bg-linear-to-b from-black/90 to-transparent pointer-events-none">
         <div className="pointer-events-auto">
           <h2 className="text-4xl font-black text-white uppercase tracking-tighter">{interest.title}</h2>
           <p className="text-[#80e0ff] tracking-widest text-sm">{interest.country}</p>
@@ -151,7 +159,7 @@ const FloatingGallery = ({ interest, onClose }: { interest: Interest; onClose: (
       <div className="relative w-full h-full overflow-hidden bg-[#0d0d1f]">
         
         {/* Mask */}
-        <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f] h-full" />
+        <div className="absolute inset-0 pointer-events-none z-10 bg-linear-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f] h-full" />
 
         {/* The Grid */}
         <div className="w-full h-[120vh] -mt-[10vh] px-4 md:px-8 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 transform rotate-0">
@@ -183,7 +191,7 @@ export default function InterestsGallery() {
   };
 
   return (
-    <section id="interests" className="relative py-20 bg-[#0d0d1f] text-white overflow-hidden min-h-[800px] flex flex-col justify-center">
+    <section id="interests" className="relative py-12 pt-24 bg-[#0d0d1f] text-white overflow-hidden min-h-screen flex flex-col justify-center">
       
       {/* Background Layer */}
       <div className="absolute inset-0 z-0 w-full h-full">
@@ -205,7 +213,7 @@ export default function InterestsGallery() {
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
@@ -239,7 +247,7 @@ export default function InterestsGallery() {
                 onClick={() => handleCardClick(offset)}
               >
                 <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 340px" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80" />
                 <AnimatePresence mode="wait">
                   {isActive && (
                     <motion.div
@@ -255,7 +263,7 @@ export default function InterestsGallery() {
                         <span className="text-sm md:text-base font-bold uppercase tracking-[0.2em] text-[#80e0ff]">{item.country}</span>
                       </div>
                       <p className="text-sm text-gray-300 italic font-light tracking-wide opacity-90 mb-4">&ldquo;{item.description}&rdquo;</p>
-                      <span className="inline-block px-4 py-1 border border-white/30 rounded-full text-xs uppercase tracking-widest text-white/80 group-hover:bg-white/20 transition-colors">Click to explore</span>
+                      <span className="inline-block px-4 py-1 border border-white/30 rounded-full text-xs uppercase tracking-widest text-white/80 group-hover:bg-white/20 transition-colors">Open Gallery</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
