@@ -21,10 +21,14 @@ const Projects = () => {
 
   return (
     <>
-      <section id="projects" className="py-20 px-4 md:px-8">
-        <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">
-          Projects
-        </h2>
+      <section id="projects" className="relative py-20 px-4 md:px-8">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-[#0d0d28]/90 z-0 pointer-events-none"></div>
+        
+        <div className="relative z-10">
+          <h2 className="text-4xl font-bold mb-12 text-center text-[#80e0ff]">
+            Projects
+          </h2>
 
         {/* Main Grid Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -71,6 +75,7 @@ const Projects = () => {
             ))}
           </div>
         )}
+        </div>
       </section>
 
       {/* Modal */}

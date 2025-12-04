@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaHeart } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaHeart } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,14 +17,16 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: FaGithub, href: "#", label: "GitHub" },
-    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
-    { icon: FaInstagram, href: "#", label: "Instagram" },
+    { icon: FaGithub, href: "https://github.com/PiuminiTishani", label: "GitHub" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/piumini-tishani-3a1405287/", label: "LinkedIn" },
   ];
 
   return (
-    <footer className="relative bg-[#0a0a1a] border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-8">
+    <footer className="relative border-t border-white/5">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[#05050f]/98 z-0 pointer-events-none"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-8">
         
         {/* Navigation Links */}
         <div className="flex justify-center mb-6">

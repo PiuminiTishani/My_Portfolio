@@ -7,18 +7,27 @@ import Experience from './Experience/Experience';
 import InterestsGallery from './Interests/Interests';
 import ContactSection from './Contact/Contact';
 import Footer from './Footer/Footer';
+import ParticlesHero from './Hero/ParticleBackground';
 
 const Home = () => {
   return (
-    <div className="overflow-hidden">
-      <Hero />
-      <SkillsSection />
-      <Projects />
-      <Education />
-      <Experience />
-      <InterestsGallery />
-      <ContactSection />
-      <Footer />
+    <div className="relative overflow-hidden">
+      {/* Global Particle Background */}
+      <div className="fixed inset-0 z-0">
+        <ParticlesHero />
+      </div>
+      
+      {/* Content with relative positioning */}
+      <div className="relative z-10">
+        <Hero />
+        <SkillsSection />
+        <Projects />
+        <Education />
+        <Experience />
+        <InterestsGallery />
+        <ContactSection />
+        <Footer />
+      </div>
     </div>
   )
 }

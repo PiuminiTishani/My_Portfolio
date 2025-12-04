@@ -84,7 +84,11 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-20 bg-[#0a0a1f] text-white relative overflow-hidden">
+    <section id="experience" className="py-20 text-white relative overflow-hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[#0d0d28]/90 z-0 pointer-events-none"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Title */}
         <h2 className="text-4xl font-bold text-center text-[#80e0ff]">
@@ -213,8 +217,9 @@ export default function Experience() {
               </div>
             </div>
           </div>
-        </div>
+      </div>
       )}
+      </div>
     </section>
   );
 }

@@ -80,8 +80,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-20 bg-[#0d0d1f] text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+    <section id="contact" className="relative py-20 text-white overflow-hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[#0d0d28]/90 z-0 pointer-events-none"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center text-[#80e0ff] mb-8 md:mb-12 drop-shadow-lg">
           Contact Me
         </h2>

@@ -101,7 +101,11 @@ export default function Education() {
   }, []);
 
   return (
-    <section id="education" className="py-20 bg-[#0a0a1f] text-white relative">
+    <section id="education" className="py-20 text-white relative">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[#08081f]/95 z-0 pointer-events-none"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto px-4">
         {/* Section Title */}
         <h2 className="text-4xl font-bold mb-6 text-center text-[#80e0ff]">
@@ -219,6 +223,7 @@ export default function Education() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

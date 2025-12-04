@@ -96,10 +96,14 @@ export default function SkillsSection() {
 
   return (
     // CHANGED: Matched reference padding logic: px-[12vw] md:px-[7vw] lg:px-[20vw]
-    <section className="py-24 bg-[#0d0d1f] text-white overflow-hidden px-[12vw] md:px-[7vw] lg:px-[20vw]">
+    <section className="relative py-24 text-white overflow-hidden px-[12vw] md:px-[7vw] lg:px-[20vw]">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[#08081f]/95 z-0 pointer-events-none"></div>
+      
+      <div className="relative z-10">
       <div className="text-center mb-8">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#80e0ff]">My Skills</h2>
-        <div className="w-24 h-1 bg-[#80e0ff] mx-auto mt-2 mb-4"></div>
+        
       </div>
 
       {/* CHANGED: Switched to Flexbox with wrap and justify-between to match reference */}
@@ -119,6 +123,7 @@ export default function SkillsSection() {
               </div>
             ))}
         </div>
+      </div>
       </div>
     </section>
   );

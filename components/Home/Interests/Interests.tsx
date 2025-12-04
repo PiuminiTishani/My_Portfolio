@@ -223,30 +223,11 @@ export default function InterestsGallery() {
   };
 
   return (
-    <section id="interests" className="relative py-12 pt-24 bg-[#0d0d1f] text-white overflow-hidden min-h-screen flex flex-col justify-center">
+    <section id="interests" className="relative py-12 pt-24 text-white overflow-hidden min-h-screen flex flex-col justify-center">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-[#08081f]/95 z-0 pointer-events-none"></div>
       
-      {/* Background Layer */}
-      <div className="absolute inset-0 z-0 w-full h-full">
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            key={activeItem.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={activeItem.image}
-              alt="Background"
-              fill
-              className="object-cover blur-sm opacity-100 brightness-75"
-              priority
-            />
-          </motion.div>
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f]" />
-      </div>
+      {/* Removed background image - now using global particles */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
         <h2 className="text-4xl font-bold text-center text-[#80e0ff] mb-8 md:mb-12 drop-shadow-lg">
