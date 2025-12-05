@@ -164,7 +164,7 @@ const FloatingGallery = ({ interest, onClose }: { interest: Interest; onClose: (
       className="fixed inset-0 z-[999] bg-[#0d0d1f] flex flex-col overflow-hidden"
     >
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-24 px-6 pb-8 md:pt-28 md:px-12 bg-gradient-to-b from-[#0d0d1f] to-transparent pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-32 md:pt-36 px-6 pb-8 md:px-12 bg-gradient-to-b from-[#0d0d1f] to-transparent pointer-events-none">
         <div className="pointer-events-auto">
           <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
             {interest.title}
@@ -223,9 +223,9 @@ export default function InterestsGallery() {
   };
 
   return (
-    <section id="interests" className="relative py-12 pt-24 text-white overflow-hidden min-h-screen flex flex-col justify-center">
+    <section id="interests" className="relative py-12 md:py-20 text-white overflow-hidden">
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-[#08081f]/95 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[#08081f]/40 z-0 pointer-events-none"></div>
       
       {/* Removed background image - now using global particles */}
 

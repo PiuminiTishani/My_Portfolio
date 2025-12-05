@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Achievement {
   id: number;
@@ -15,18 +19,39 @@ interface Achievement {
 const achievementsData: Achievement[] = [
   {
     id: 1,
-    organization: "Faculty of Information Technology - University of Moratuwa",
-    image: "/images/fit.jpg",
-    duration: "2023 - Present",
-    description: "Engaged in mentoring, organizing events, and fostering community within the Faculty of Information Technology.",
+    organization: "IoT and Embedded Systems Research Labs -Faculty of IT",
+    image: "/images/ies.jpg",
+    duration: "2025 - Present",
+    description: "Mentoring students, coordinating hands-on sessions, and supporting projects within the IoT and Embedded Systems Research Labs to foster learning and innovation.",
     roles: [
-      "Mentor - Sessions Team - IES Labs",
-      "Member - FIT Tunes 24/25",
-      "Company Coordinator - FIT Sixes 2024"
+      "Mentor - Sessions Team - IES Labs"
     ]
   },
   {
     id: 2,
+    organization: "Faculty of Information Technology - University of Moratuwa",
+    image: "/images/faculty.jpg",
+    duration: "2023 - Present",
+    description: "Engaged in mentoring, organizing events, and fostering community within the Faculty of Information Technology.",
+    roles: [
+      "Mentor - Sessions Team - IES Labs",
+      "Member - FIT Tunes 24/25 , 25/26",
+      "Company Coordinator - FIT Sixes 2024"
+    ]
+  },
+    {
+    id: 3,
+    organization: "Dancing Society of University of Moratuwa",
+    image: "/images/dancing.jpg",
+    duration: "2024 - Present",
+    description: "Contributing to the digital presence and event organization of one of the university's most vibrant cultural societies.",
+    roles: [
+      "Director of IT and Social Media Directory (Term 2025/2026)",
+      "Organizing Committee Member - Hadathala 2.0"
+    ]
+  },
+  {
+    id: 4,
     organization: "Rotaract Club of University of Moratuwa",
     image: "/images/rotaract.jpg",
     duration: "2023 - Present",
@@ -41,20 +66,9 @@ const achievementsData: Achievement[] = [
     ]
   },
   {
-    id: 3,
-    organization: "Dancing Society of University of Moratuwa",
-    image: "/images/dancing-society.jpg",
-    duration: "2024 - Present",
-    description: "Contributing to the digital presence and event organization of one of the university's most vibrant cultural societies.",
-    roles: [
-      "Director of IT and Social Media Directory (Term 2025/2026)",
-      "Organizing Committee Member - Hadathala 2.0"
-    ]
-  },
-  {
-    id: 4,
+    id: 5,
     organization: "IEEE Student Branch of University of Moratuwa",
-    image: "/images/ieee.jpg",
+    image: "/images/ieee.jpeg",
     duration: "2024 - Present",
     description: "Contributing to technical conferences and educational programs that advance technology and professional development.",
     roles: [
@@ -68,6 +82,7 @@ const achievementsData: Achievement[] = [
 export default function Experience() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Removed the setTimeout and isAnimating lock for instant reaction
   const handleCardClick = () => {
@@ -83,10 +98,49 @@ export default function Experience() {
     setSelectedAchievement(null);
   };
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedAchievement) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedAchievement]);
+
+  // Scroll animation
+  useEffect(() => {
+    if (sectionRef.current) {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <section id="experience" className="py-20 text-white relative overflow-hidden">
+    <section id="experience" ref={sectionRef} className="py-20 text-white relative overflow-hidden">
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-[#0d0d28]/90 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[#0d0d28]/40 z-0 pointer-events-none"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto px-4">
@@ -173,7 +227,7 @@ export default function Experience() {
       {/* Modal - Kept exactly as is */}
       {selectedAchievement && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center p-4 pt-20 animate-fadeIn"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex justify-center items-center p-4 pt-20 animate-fadeIn"
           onClick={closeModal}
         >
           <div

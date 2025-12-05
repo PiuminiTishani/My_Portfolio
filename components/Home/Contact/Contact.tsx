@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { FaWhatsapp, FaTelegram, FaLinkedin, FaFacebookMessenger } from "react-icons/fa";
+import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faPhone, 
   faEnvelope, 
-  faLocationDot,
-  faArrowUp
+  faLocationDot
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -15,12 +13,42 @@ import {
   faTwitter,
   faInstagram
 } from "@fortawesome/free-brands-svg-icons";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactSection() {
   const form = useRef<HTMLFormElement>(null);
   const [isSent, setIsSent] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,9 +108,9 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-20 text-white overflow-hidden">
+    <section id="contact" ref={sectionRef} className="relative py-20 text-white overflow-hidden">
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-[#0d0d28]/90 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[#0d0d28]/40 z-0 pointer-events-none"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center text-[#80e0ff] mb-8 md:mb-12 drop-shadow-lg">

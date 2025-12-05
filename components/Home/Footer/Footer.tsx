@@ -18,7 +18,7 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: FaGithub, href: "https://github.com/PiuminiTishani", label: "GitHub" },
-    { icon: FaLinkedin, href: "https://www.linkedin.com/in/piumini-tishani-3a1405287/", label: "LinkedIn" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/piumini-tishani-209b70269/", label: "LinkedIn" },
   ];
 
   return (

@@ -1,7 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const frontendSkills = [
   { name: "HTML", logo: "/logos/html.png" },
@@ -84,7 +88,7 @@ export default function SkillsSection() {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="big-card bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 flex flex-col items-center shadow-[0_0_8px_#80e0ff] w-full sm:w-[48%] mb-5 h-auto sm:min-h-[400px]"
+        className="skill-card big-card bg-[#0f0f2f] border border-[#80e0ff20] rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 flex flex-col items-center shadow-[0_0_8px_#80e0ff] w-full sm:w-[48%] mb-5 h-auto sm:min-h-[400px]"
       >
         <h3 className="text-lg sm:text-2xl md:text-3xl font-bold mb-5 sm:mb-8 text-[#80dfffc7] tracking-wide text-center">{title}</h3>
         <div className="grid grid-cols-2 gap-1.5 sm:gap-3 w-full flex-1 content-start">
@@ -94,11 +98,40 @@ export default function SkillsSection() {
     );
   };
 
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      const skillCards = sectionRef.current.querySelectorAll('.skill-card');
+      gsap.fromTo(
+        skillCards,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
     // CHANGED: Matched reference padding logic: px-[12vw] md:px-[7vw] lg:px-[20vw]
-    <section className="relative py-24 text-white overflow-hidden px-[12vw] md:px-[7vw] lg:px-[20vw]">
+    <section id="skills" ref={sectionRef} className="relative py-24 text-white overflow-hidden px-[12vw] md:px-[7vw] lg:px-[20vw]">
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-[#08081f]/95 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[#08081f]/40 z-0 pointer-events-none"></div>
       
       <div className="relative z-10">
       <div className="text-center mb-8">

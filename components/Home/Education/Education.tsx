@@ -25,7 +25,7 @@ const educationData: Education[] = [
     duration: "2021 - Present",
     grade: "3.54 CGPA",
     description: "Currently pursuing a BSc (Hons) in Information Technology at the University of Moratuwa, Sri Lanka, focusing on core areas such as software engineering, web technologies, data structures, databases, and emerging IT practices, while gaining hands-on experience through projects and industry-aligned coursework.",
-    logo: "/logos/uom.png",
+    logo: "/images/unilogo.jpg",
   },
   {
     id: 2,
@@ -33,8 +33,8 @@ const educationData: Education[] = [
     institution: "Ferguson High School, Ratnapura",
     duration: "2019 - 2021",
     grade: "A B C",
-    description: "Completed my Advanced Level (A/L) education at Ferguson High School, Ratnapura, specialized in Combined Maths, Physics, and ICT. ",
-    logo: "/logos/ferguson.png",
+    description: "Completed my Advanced Level (A/L) education at Ferguson High School, Ratnapura, specialized in ICT, Combined Maths and Physics.",
+    logo: "/images/fhs.png",
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const educationData: Education[] = [
     institution: "AAT Sri Lanka",
     duration: "2019 Jan - 2019 Jul",
     description: "Successfully completed AAT Level 1 in the July 2019 Examination in English Medium, gaining foundational knowledge in accounting principles, financial record-keeping, and basic business practices.",
-    logo: "/logos/aat.png",
+    logo: "/images/aat.png",
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const educationData: Education[] = [
     institution: "AAT Sri Lanka",
     duration: "2019 Jul - 2020 Jan",
     description: "Completed part of the AAT Level 2 Examination in English Medium, gaining foundational knowledge in business studies, law, and financial processes and accounting.",
-    logo: "/logos/aat.png",
+    logo: "/images/aat.png",
   },
   {
     id: 5,
@@ -59,7 +59,7 @@ const educationData: Education[] = [
     duration: "2007 - 2018",
     grade: "9 As",
     description: "Successfully completed O/L examinations with a strong emphasis on core subjects including Mathematics, Science, English, and Information & Communication Technology along with diverse other subjects, building a solid academic foundation for further studies.",
-    logo: "/logos/jmc.png",
+    logo: "/images/jmc.jpeg",
   },
 ];
 
@@ -103,7 +103,7 @@ export default function Education() {
   return (
     <section id="education" className="py-20 text-white relative">
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-[#08081f]/95 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[#08081f]/40 z-0 pointer-events-none"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -136,12 +136,12 @@ export default function Education() {
                   <div className="w-full md:w-[46%] pl-16 md:pl-0">
                     <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
                       <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 relative shrink-0 bg-white rounded-full p-1.5 sm:p-2">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 relative shrink-0 bg-white rounded-full p-1.5 sm:p-2 overflow-hidden">
                           <Image
                             src={edu.logo}
                             alt={edu.institution}
                             fill
-                            className="object-contain"
+                            className="object-contain rounded-full"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -189,12 +189,12 @@ export default function Education() {
                   <div className="w-full md:w-[46%] pl-16 md:pl-0">
                     <div className="bg-[#0f0f2f] border border-[#80e0ff30] rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.3)] transition-all duration-300">
                       <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 relative shrink-0 bg-white rounded-full p-1.5 sm:p-2">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 relative shrink-0 bg-white rounded-full p-1.5 sm:p-2 overflow-hidden">
                           <Image
                             src={edu.logo}
                             alt={edu.institution}
                             fill
-                            className="object-contain"
+                            className="object-contain rounded-full"
                           />
                         </div>
                         <div className="flex-1 min-w-0">

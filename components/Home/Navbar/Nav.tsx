@@ -23,6 +23,22 @@ const Nav = ({openNav}:Props) => {
     return()=> window.removeEventListener('scroll', handler);
   }, []);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    e.preventDefault();
+    const targetId = url.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const navHeight = window.innerHeight * 0.12; // 12vh navbar height
+      const targetPosition = targetElement.offsetTop - navHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
 
   return (
     <div className={`transition-all ${navBg ? 'bg-[#0f142ed9] shadow-md' : 'fixed'} duration-200 h-[12vh] z-10000 fixed w-full`}
@@ -38,7 +54,12 @@ const Nav = ({openNav}:Props) => {
             {/* Nav Links */}
             <div className='hidden lg:flex items-center space-x-10 absolute left-1/2 transform -translate-x-1/2'>
               {NavLinks.map((link) => (
-                <a key={link.id} href={link.url} className='text-base hover:text-cyan-300 text-white font-medium transition-all duration-200'>
+                <a 
+                  key={link.id} 
+                  href={link.url} 
+                  onClick={(e) => handleSmoothScroll(e, link.url)}
+                  className='text-base hover:text-cyan-300 text-white font-medium transition-all duration-200'
+                >
                   <p>{link.Label}</p>
                 </a>
               ))}

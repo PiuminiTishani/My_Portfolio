@@ -36,14 +36,15 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         <div className="flex flex-col gap-6">
           
           {/* Project Image */}
-          <div className="w-full h-auto rounded-lg overflow-hidden border border-gray-700">
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={1200}
-              height={700}
-              className="object-cover w-full"
-            />
+          <div className="w-full max-w-md mx-auto h-auto rounded-lg overflow-hidden border border-gray-700 bg-black/40 p-3">
+            <div className="relative w-full h-64">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-contain rounded-lg"
+              />
+            </div>
           </div>
 
           {/* Title + Description */}

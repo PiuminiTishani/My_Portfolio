@@ -1,11 +1,63 @@
 'use client';
 import Image from 'next/image'
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { FaFigma, FaCode, FaDatabase } from 'react-icons/fa';
 import Typewriter from 'typewriter-effect'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const imageRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (heroRef.current) {
+      gsap.fromTo(
+        heroRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    if (servicesRef.current) {
+      const serviceCards = servicesRef.current.querySelectorAll('.service-card');
+      gsap.fromTo(
+        serviceCards,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: servicesRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!imageRef.current) return;
@@ -44,22 +96,22 @@ const Hero = () => {
   ];
 
   return (
-    <div className='relative h-auto min-h-screen text-white overflow-hidden'>
+    <div id="about" className='relative h-auto min-h-screen text-white overflow-hidden'>
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a2f]/40 to-[#0d0d25]/95 z-0 pointer-events-none"></div>
 
         {/* Hero Content Section */}
-        <div className='relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-20 w-full max-w-7xl mx-auto px-6 md:px-12 pt-40 md:pt-44 pb-20'>
+        <div ref={heroRef} className='relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-20 w-full max-w-7xl mx-auto px-6 md:px-12 pt-40 md:pt-44 pb-20'>
             
             {/* Text Content - Left Side */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-2xl">
               <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold tracking-wide leading-tight'>
-                  Hi, I am <br className="hidden md:block" />
+                  Hey there, I am <br className="hidden md:block" />
                   <span className='text-[#80e0ff]'>Piumini Tishani</span>
               </h1>
               <h2 className='mt-6 text-xl sm:text-2xl md:text-3xl font-medium flex items-center flex-wrap justify-center md:justify-start gap-2'>
                   I am a 
-                  <span className='text-[#80e0ff] font-semibold'>
+                  <span className='text-[#826cd2] font-semibold'>
                       <Typewriter options={{
                           strings:[
                               'Full Stack Developer',
@@ -82,8 +134,9 @@ const Hero = () => {
 
               {/* Download CV Button */}
               <a 
-                href="/cv.pdf" 
-                download
+                href="https://drive.google.com/file/d/1kCl05JYHvWQ5jNrDd-sVRviHqAOTl_1u/view?usp=sharing" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 px-8 py-4 bg-gradient-to-r from-purple-900 to-blue-800 hover:from-purple-700 hover:to-blue-700 active:from-purple-700 active:to-blue-700 rounded-full text-white font-semibold text-lg shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:shadow-[0_0_30px_rgba(168,85,247,0.7)] transition-all duration-300 hover:scale-105 active:scale-105"
               >
                 Download CV
@@ -115,13 +168,13 @@ const Hero = () => {
         </div>
 
         {/* Services Cards Section */}
-        <div className="relative z-10 w-full max-w-6xl px-6 md:px-12 mx-auto pb-32">
+        <div ref={servicesRef} className="relative z-10 w-full max-w-6xl px-6 md:px-12 mx-auto pb-32">
          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-[#0f0f2f]/40 backdrop-blur-md border border-[#80e0ff]/30 rounded-3xl p-8 hover:scale-105 hover:bg-[#0f0f2f]/60 hover:border-[#80e0ff]/50 active:scale-105 active:bg-[#0f0f2f]/60 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(128,224,255,0.3)]"
+                className="service-card bg-[#0f0f2f]/40 backdrop-blur-md border border-[#80e0ff]/30 rounded-3xl p-8 hover:scale-105 hover:bg-[#0f0f2f]/60 hover:border-[#80e0ff]/50 active:scale-105 active:bg-[#0f0f2f]/60 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(128,224,255,0.3)]"
               >
                 <div className="flex justify-center mb-6 text-[#80e0ff]">
                   {service.icon}
