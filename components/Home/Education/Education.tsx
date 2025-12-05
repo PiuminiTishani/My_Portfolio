@@ -116,9 +116,9 @@ export default function Education() {
         {/* Timeline Container */}
         <div className="relative">
           {/* Vertical Line - Hidden on mobile, centered on desktop */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-linear-to-b from-[#80e0ff] via-[#80e0ff50] to-transparent h-full"></div>
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-linear-to-b from-[#22addc] via-[#965acab9] to-transparent h-full"></div>
           {/* Mobile vertical line on the left */}
-          <div className="md:hidden absolute left-6 w-1 bg-linear-to-b from-[#80e0ff] via-[#80e0ff50] to-transparent h-full"></div>
+          <div className="md:hidden absolute left-6 w-1 bg-linear-to-b from-[#22addc] via-[#965acab9] to-transparent h-full"></div>
 
           {/* Education Items */}
           {educationData.map((edu, index) => (
@@ -168,7 +168,7 @@ export default function Education() {
 
                   {/* Center Circle - adjusted for mobile */}
                   <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 top-6 sm:top-8 w-8 h-8 sm:w-12 sm:h-12 bg-[#0a0a1f] border-2 sm:border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
-                    <div className="w-2 h-2 sm:w-4 sm:h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 sm:w-4 sm:h-4 bg-linear-to-b from-[#22addc] to-[#965acab9] rounded-full animate-pulse"></div>
                   </div>
 
                   {/* Empty Space on Right (desktop only) */}
@@ -182,7 +182,7 @@ export default function Education() {
 
                   {/* Center Circle - adjusted for mobile */}
                   <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 top-6 sm:top-8 w-8 h-8 sm:w-12 sm:h-12 bg-[#0a0a1f] border-2 sm:border-4 border-[#80e0ff] rounded-full flex items-center justify-center z-10">
-                    <div className="w-2 h-2 sm:w-4 sm:h-4 bg-[#80e0ff] rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 sm:w-4 sm:h-4 bg-linear-to-b from-[#22addc] to-[#965acab9] rounded-full animate-pulse"></div>
                   </div>
 
                   {/* Card on Right */}

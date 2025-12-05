@@ -29,16 +29,16 @@ const Projects = () => {
       const projectCards = sectionRef.current.querySelectorAll('.project-card');
       gsap.fromTo(
         projectCards,
-        { opacity: 0, y: 100 },
+        { opacity: 0, y: 80 },
         {
           opacity: 1,
           y: 0,
           duration: 1.2,
-          stagger: 0.25,
-          ease: 'power3.out',
+          stagger: 0.3,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
+            start: 'top 80%',
             toggleActions: 'play none none none',
           },
         }

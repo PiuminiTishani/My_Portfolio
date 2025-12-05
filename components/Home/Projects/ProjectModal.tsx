@@ -17,7 +17,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center p-4 transition-opacity duration-300"
+      className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex justify-center items-center p-4 transition-opacity duration-300"
       onClick={handleOverlayClick}
     >
       <div
@@ -27,7 +27,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-20 right-4 text-gray-400 text-3xl hover:text-white z-10 transition-colors"
+          className="absolute top-4 right-4 text-gray-400 text-3xl hover:text-white z-10 transition-colors"
           aria-label="Close modal"
         >
           &times;

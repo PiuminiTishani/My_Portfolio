@@ -12,8 +12,11 @@ const fonts = Inter({
 
 
 export const metadata: Metadata = {
-  title: "Piumini  Tishani",
+  title: "Piumini Tishani",
   description: "Piumini's Portfolio Website",
+  icons: {
+    icon: '/images/photo.jpg',
+  },
 };
 
 export default function RootLayout({

@@ -5,7 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
-export default function ParticlesHero() {
+export default function ParticlesLoader() {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -26,63 +26,58 @@ export default function ParticlesHero() {
 
     interactivity: {
       events: {
-        onHover: { enable: true, mode: "repulse" },
-        onClick: { enable: true, mode: "push" },
-      },
-      modes: {
-        repulse: { distance: 120, duration: 0.5 },
-        push: { quantity: 3 },
+        onHover: { enable: false },
+        onClick: { enable: false },
       },
     },
 
     particles: {
-      number: { value: 180, density: { enable: true, area: 1200 } },
+      number: { value: 120, density: { enable: true, area: 1200 } },
       color: { value: ["#ffffff", "#9ecfff", "#ffd27f", "#b19cd9", "#80e0ff"] },
-      opacity: { value: { min: 0.3, max: 0.9 }, animation: { enable: true, speed: 1.5, minimumValue: 0.3 } },
-      size: { value: { min: 0.5, max: 3 }, animation: { enable: true, speed: 3, minimumValue: 0.4 } },
-      move: { enable: true, speed: 0.6, direction: MoveDirection.none, random: true, outModes: { default: OutMode.out } },
-      twinkle: { particles: { enable: true, frequency: 0.05, opacity: 1 } },
+      opacity: { value: { min: 0.3, max: 0.8 }, animation: { enable: true, speed: 0.3, minimumValue: 0.3 } },
+      size: { value: { min: 0.5, max: 2.5 }, animation: { enable: true, speed: 0.5, minimumValue: 0.4 } },
+      move: { enable: true, speed: 0.15, direction: MoveDirection.none, random: true, outModes: { default: OutMode.out } },
       shape: { type: "circle" },
     },
 
     emitters: [
-      // 🌠 Shooting stars
+      // 🌠 Shooting stars - slower
       {
         position: { x: 50, y: 0 },
         size: { width: 100, height: 0, mode: "percent" },
-        rate: { delay: 2.5, quantity: 1 },
+        rate: { delay: 4, quantity: 1 },
         life: { count: 0 },
         particles: {
-          life: { duration: { value: 1.5 }, count: 1 },
+          life: { duration: { value: 2 }, count: 1 },
           color: { value: "#ffffff" },
-          size: { value: { min: 0.7, max: 1.7 } },
+          size: { value: { min: 0.5, max: 1.2 } },
           opacity: {
-            value: { min: 0.4, max: 0.9 },
-            animation: { enable: true, speed: 0.8, startValue: "min", destroy: "max", sync: true },
+            value: { min: 0.3, max: 0.7 },
+            animation: { enable: true, speed: 0.5, startValue: "min", destroy: "max", sync: true },
           },
           move: {
             enable: true,
-            speed: { min: 130, max: 160 },
+            speed: { min: 80, max: 100 },
             direction: "bottom",
             angle: { offset: 20, value: 90 },
             straight: true,
             outModes: { default: OutMode.destroy },
-            trail: { enable: true, length: 6, fillColor: "#ffffff" },
+            trail: { enable: true, length: 4, fillColor: "#ffffff" },
           },
         },
       },
 
-      // 🌌 Subtle nebula/glow particles
+      // 🌌 Subtle nebula/glow particles - slower
       {
         direction: MoveDirection.none,
-        rate: { delay: 0.2, quantity: 1 },
+        rate: { delay: 0.3, quantity: 1 },
         position: { x: 50, y: 50 },
         size: { width: 100, height: 100 },
         particles: {
           color: { value: ["#381a71", "#261865", "#1a2b7a", "#004e92"] },
-          size: { value: { min: 120, max: 250 } },
-          opacity: { value: 0.03 },
-          move: { enable: true, speed: 0.3, direction: MoveDirection.none, outModes: { default: OutMode.out } },
+          size: { value: { min: 100, max: 200 } },
+          opacity: { value: 0.02 },
+          move: { enable: true, speed: 0.15, direction: MoveDirection.none, outModes: { default: OutMode.out } },
         },
       },
     ],
@@ -92,7 +87,7 @@ export default function ParticlesHero() {
 
   return (
     <div className="absolute inset-0 bg-gradient-to-t from-[#01010a] via-[#050524] to-[#000000] overflow-hidden">
-      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="absolute inset-0" />
+      <Particles id="tsparticles-loader" particlesLoaded={particlesLoaded} options={options} className="absolute inset-0" />
     </div>
   );
 }
