@@ -35,7 +35,7 @@ const MobileNav = ({closeNav,showNav}:Props) => {
 
           {/* Header */}
           <div className="pt-8 px-8 pb-6">
-            <div className="w-16 h-1 bg-gradient-to-r from-[#80e0ff] to-purple-600 rounded-full"></div>
+            <div className="w-16 h-1 bg-linear-to-r from-[#80e0ff] to-purple-600 rounded-full"></div>
           </div>
 
           {/* Navigation Links */}
@@ -51,7 +51,7 @@ const MobileNav = ({closeNav,showNav}:Props) => {
                     {link.Label}
                   </span>
                   {/* Underline effect */}
-                  <div className="h-[2px] bg-gradient-to-r from-[#80e0ff] to-purple-600 scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
+                  <div className="h-0.5 bg-linear-to-r from-[#80e0ff] to-purple-600 scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
                 </div>
               </Link>
             ))}

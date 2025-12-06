@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="w-[70%] mx-auto h-px bg-gradient-to-r from-transparent via-[#80e0ff]/70 to-transparent mb-6" />
+        <div className="w-[70%] mx-auto h-px bg-linear-to-r from-transparent via-[#80e0ff]/70 to-transparent mb-6" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           

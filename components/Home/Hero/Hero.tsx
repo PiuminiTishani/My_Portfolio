@@ -98,7 +98,7 @@ const Hero = () => {
   return (
     <div id="about" className='relative h-auto min-h-screen text-white overflow-hidden'>
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a2f]/40 to-[#0d0d25]/95 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#0a0a2f]/40 to-[#0d0d25]/95 z-0 pointer-events-none"></div>
 
         {/* Hero Content Section */}
         <div ref={heroRef} className='relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-20 w-full max-w-7xl mx-auto px-6 md:px-12 pt-40 md:pt-44 pb-20'>
@@ -137,7 +137,7 @@ const Hero = () => {
                 href="https://drive.google.com/file/d/1kCl05JYHvWQ5jNrDd-sVRviHqAOTl_1u/view?usp=sharing" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 px-8 py-4 bg-gradient-to-r from-purple-900 to-blue-800 hover:from-purple-700 hover:to-blue-700 active:from-purple-700 active:to-blue-700 rounded-full text-white font-semibold text-lg shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:shadow-[0_0_30px_rgba(168,85,247,0.7)] transition-all duration-300 hover:scale-105 active:scale-105"
+                className="mt-8 px-8 py-4 bg-linear-to-r from-purple-900 to-blue-800 hover:from-purple-700 hover:to-blue-700 active:from-purple-700 active:to-blue-700 rounded-full text-white font-semibold text-lg shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:shadow-[0_0_30px_rgba(168,85,247,0.7)] transition-all duration-300 hover:scale-105 active:scale-105"
               >
                 Download CV
               </a>

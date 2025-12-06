@@ -7,12 +7,7 @@ import {
   faEnvelope, 
   faLocationDot
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faYoutube,
-  faTwitter,
-  faInstagram
-} from "@fortawesome/free-brands-svg-icons";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import emailjs from "@emailjs/browser";

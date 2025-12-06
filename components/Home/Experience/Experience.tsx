@@ -226,7 +226,7 @@ export default function Experience() {
           // This creates a dedicated space for the navbar.
           // items-center then centers the modal in the REMAINING vertical space.
           // This results in Equal Top Gap (below nav) and Equal Bottom Gap (above screen edge).
-          className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] flex justify-center items-center px-4 pt-20 md:pt-24 pb-0 animate-fadeIn"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-9999 flex justify-center items-center px-4 pt-20 md:pt-24 pb-0 animate-fadeIn"
           onClick={closeModal}
         >
           <div

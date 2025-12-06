@@ -76,14 +76,14 @@ const Home = () => {
     <div className="relative overflow-hidden">
       {/* Loading Screen */}
       {loading && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden">
           {/* Slower Particle Background for Loading Screen */}
           <div className="absolute inset-0 z-0">
             <ParticlesLoader />
           </div>
           
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-[#0d0d1f]/60 z-[1]"></div>
+          <div className="absolute inset-0 bg-[#0d0d1f]/60 z-1"></div>
 
           {/* Center Content */}
           <div className="relative z-10 text-center px-4">
@@ -106,7 +106,7 @@ const Home = () => {
               
               {/* Center glowing circle with icon */}
               <div className="relative flex items-center justify-center w-48 h-48 mx-auto">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#80e0ff] to-[#60c0ff] rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(128,224,255,0.6)] animate-pulse" style={{ animationDuration: '2s' }}>
+                <div className="w-20 h-20 bg-linear-to-br from-[#80e0ff] to-[#60c0ff] rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(128,224,255,0.6)] animate-pulse" style={{ animationDuration: '2s' }}>
                   <FaCode className="w-10 h-10 text-white" />
                 </div>
               </div>
@@ -124,7 +124,7 @@ const Home = () => {
                 
                 <div className="relative h-1.5 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
                   <div 
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#80e0ff] to-[#60c0ff] rounded-full transition-all duration-200 ease-out shadow-[0_0_15px_rgba(128,224,255,0.8)]"
+                    className="absolute top-0 left-0 h-full bg-linear-to-r from-[#80e0ff] to-[#60c0ff] rounded-full transition-all duration-200 ease-out shadow-[0_0_15px_rgba(128,224,255,0.8)]"
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
@@ -143,7 +143,7 @@ const Home = () => {
 
       {/* Flash Effect */}
       {showFlash && (
-        <div className="fixed inset-0 z-[10000] bg-white animate-flash pointer-events-none"></div>
+        <div className="fixed inset-0 z-10000 bg-white animate-flash pointer-events-none"></div>
       )}
 
       {/* Global Particle Background */}
@@ -167,7 +167,7 @@ const Home = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-[100] p-4 bg-[#80e0ff] hover:bg-[#60c0df] active:bg-[#60c0df] rounded-full shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.5)] transition-all duration-300 hover:scale-110 active:scale-110 group"
+          className="fixed bottom-8 right-8 z-100 p-4 bg-[#80e0ff] hover:bg-[#60c0df] active:bg-[#60c0df] rounded-full shadow-lg hover:shadow-[0_0_20px_rgba(128,224,255,0.5)] transition-all duration-300 hover:scale-110 active:scale-110 group"
           aria-label="Scroll to top"
         >
           <FaArrowUp className="w-5 h-5 text-[#0d0d1f] group-hover:scale-110 transition-transform" />

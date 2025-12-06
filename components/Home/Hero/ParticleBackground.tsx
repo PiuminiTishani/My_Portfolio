@@ -91,7 +91,7 @@ export default function ParticlesHero() {
   if (!init) return null;
 
   return (
-    <div className="absolute inset-0 bg-gradient-to-t from-[#01010a] via-[#050524] to-[#000000] overflow-hidden">
+    <div className="absolute inset-0 bg-linear-to-t from-[#01010a] via-[#050524] to-[#000000] overflow-hidden">
       <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="absolute inset-0" />
     </div>
   );

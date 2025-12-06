@@ -91,7 +91,7 @@ const InfiniteColumn = ({ images, duration, className }: { images: string[]; dur
       }}
     >
       {[...images, ...images].map((src, idx) => (
-        <div key={idx} className="relative w-full aspect-[4/3]">
+        <div key={idx} className="relative w-full aspect-4/3">
           <Image
             src={src}
             alt=""
@@ -161,10 +161,10 @@ const FloatingGallery = ({ interest, onClose }: { interest: Interest; onClose: (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[999] bg-[#0d0d1f] flex flex-col overflow-hidden"
+      className="fixed inset-0 z-999 bg-[#0d0d1f] flex flex-col overflow-hidden"
     >
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-32 md:pt-36 px-6 pb-8 md:px-12 bg-gradient-to-b from-[#0d0d1f] to-transparent pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center pt-32 md:pt-36 px-6 pb-8 md:px-12 bg-linear-to-b from-[#0d0d1f] to-transparent pointer-events-none">
         <div className="pointer-events-auto">
           <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
             {interest.title}
@@ -184,7 +184,7 @@ const FloatingGallery = ({ interest, onClose }: { interest: Interest; onClose: (
       {/* Gallery Container */}
       <div className="relative w-full h-full overflow-hidden bg-[#0d0d1f]">
         {/* Mask */}
-        <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f] h-full" />
+        <div className="absolute inset-0 pointer-events-none z-10 bg-linear-to-b from-[#0d0d1f] via-transparent to-[#0d0d1f] h-full" />
 
         {/* The Grid */}
         <div
@@ -260,7 +260,7 @@ export default function InterestsGallery() {
                 onClick={() => handleCardClick(offset)}
               >
                 <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 340px" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80" />
                 <AnimatePresence mode="wait">
                   {isActive && (
                     <motion.div
