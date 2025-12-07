@@ -38,20 +38,21 @@ const educationData: Education[] = [
   },
   {
     id: 3,
-    degree: "Completed AAT Level I",
-    institution: "AAT Sri Lanka",
-    duration: "2019 Jan - 2019 Jul",
-    description: "Successfully completed AAT Level 1 in the July 2019 Examination in English Medium, gaining foundational knowledge in accounting principles, financial record-keeping, and basic business practices.",
-    logo: "/images/aat.png",
-  },
-  {
-    id: 4,
     degree: "Partially Completed AAT Level II",
     institution: "AAT Sri Lanka",
     duration: "2019 Jul - 2020 Jan",
     description: "Completed part of the AAT Level 2 Examination in English Medium, gaining foundational knowledge in business studies, law, and financial processes and accounting.",
     logo: "/images/aat.png",
   },
+  {
+    id: 4,
+    degree: "Completed AAT Level I",
+    institution: "AAT Sri Lanka",
+    duration: "2019 Jan - 2019 Jul",
+    description: "Successfully completed AAT Level 1 in the July 2019 Examination in English Medium, gaining foundational knowledge in accounting principles, financial record-keeping, and basic business practices.",
+    logo: "/images/aat.png",
+  },
+  
   {
     id: 5,
     degree: "O/L Examination",
