@@ -146,22 +146,27 @@ const Home = () => {
         <div className="fixed inset-0 z-10000 bg-white animate-flash pointer-events-none"></div>
       )}
 
-      {/* Global Particle Background */}
-      <div className="fixed inset-0 z-0">
-        <ParticlesHero />
-      </div>
-      
-      {/* Content with relative positioning */}
-      <div className="relative z-10">
-        <Hero />
-        <SkillsSection />
-        <Projects />
-        <Education />
-        <Experience />
-        <InterestsGallery />
-        <ContactSection />
-        <Footer />
-      </div>
+      {/* Main Content - Only render after loading is complete */}
+      {!loading && (
+        <>
+          {/* Global Particle Background */}
+          <div className="fixed inset-0 z-0">
+            <ParticlesHero />
+          </div>
+          
+          {/* Content with relative positioning */}
+          <div className="relative z-10">
+            <Hero />
+            <SkillsSection />
+            <Projects />
+            <Education />
+            <Experience />
+            <InterestsGallery />
+            <ContactSection />
+            <Footer />
+          </div>
+        </>
+      )}
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
